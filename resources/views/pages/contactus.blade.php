@@ -1,0 +1,1 @@
+<h1 style="color: red">welcome to {{ $page }} page!!!</h1>

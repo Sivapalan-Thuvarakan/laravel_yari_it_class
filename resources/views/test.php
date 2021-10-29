@@ -1,0 +1,5 @@
+{{ $page }}
+
+<?php 
+   echo $page;
+?>
