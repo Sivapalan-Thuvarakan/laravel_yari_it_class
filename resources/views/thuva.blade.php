@@ -21,6 +21,6 @@
         </style>
     </head>
    <body>
-       <h1>welcome Thuva</h1>
+       <h1>welcome Thuva{{$page}}</h1>
    </body>
 </html>

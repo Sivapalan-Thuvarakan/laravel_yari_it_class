@@ -1,5 +1,1 @@
-{{ $page }}
-
-<?php 
-   echo $page;
-?>
+<h1>welcome <?php echo $fna ?></h1>

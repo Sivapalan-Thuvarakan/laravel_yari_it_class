@@ -1,13 +1,18 @@
-<h1>This is about page</h1>
-<hr>
-<b>we are {{ $page }} </b>
+{{--
+<h1>Student Info</h1>
+<form action="/test" method="POST">
 
-<hr>
+    First Name <input type="text" id="fname" name="fname"/>
+    <input type="submit"/>
+    @csrf
+</form>
+--}}
 
-{!! $page !!}
 
-
-<hr>
-
-<a href="{{route('home')}}">go to home page </a>
-<a href="/">go to home page </a>
+<h1>Home work-05</h1>
+<form action="/test" method="POST">
+    @csrf
+    Page <input type="text" id="page" name="page"/><br><br><br>
+    Color <input type="text" id="color" name="color"/><br><br><br>
+    <input type="submit"/>
+</form>
