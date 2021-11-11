@@ -15,6 +15,8 @@
             <td>{{$employee->last_name}}</td>
             <td>{{$employee->dob}}</td>
             <td>{{$employee->salary}}</td>
+            <td><a href="{{route('employees.show',$employee->id)}}">Show</a></td>
+            <td><a href="{{route('employees.edit',$employee->id)}}">Edit</a></td>
         </tr>
     @endforeach
     </tbody>

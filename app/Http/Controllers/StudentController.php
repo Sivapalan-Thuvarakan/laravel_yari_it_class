@@ -45,7 +45,9 @@ class StudentController extends Controller
         $student=new Student();
         $student->first_name=$fname;
         $student->last_name=$lname;
-        $student->save();   }
+        $student->save();
+        return redirect()->route('students.index');
+    }
 
     /**
      * Display the specified resource.
@@ -55,7 +57,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student=Student::find($id);
+        return view('student.show',compact('student'));
     }
 
     /**
@@ -66,7 +69,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student=Student::find($id);
+        return view('student.edit',compact('student'));
     }
 
     /**
@@ -78,7 +82,20 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $request;
+        $student=Student::find($id);
+        $student->first_name=$request->fname;
+        $student->last_name=$request->lname;
+        $student->save();
+
+        // $fname=$request->input('fname');
+        // $lname=$request->input('lname');
+
+        // $student=Student::find($id);
+        // $student->first_name=$fname;
+        // $student->last_name=$lname;
+        // $student->save();
+        return redirect()->route('students.index');
     }
 
     /**

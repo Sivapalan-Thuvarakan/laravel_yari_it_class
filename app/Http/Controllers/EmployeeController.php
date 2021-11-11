@@ -57,7 +57,9 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee=Employee::find($id);
+        return view('Employee.show',compact('employee'));
+
     }
 
     /**
@@ -68,7 +70,8 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::find($id);
+        return view('Employee.edit',compact('employee'));
     }
 
     /**
@@ -80,7 +83,21 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $fname=$request->fname;
+        $lname=$request->lname;
+        $dob=$request->dob;
+        $salary=$request->salary;
+
+        $employee = Employee::find($id);
+        $employee->first_name=$fname;
+        $employee->last_name=$lname;
+        $employee->dob=$dob;
+        $employee->salary=$salary;
+
+        $employee->save();
+
+        return redirect()->route('employees.index');
+
     }
 
     /**
