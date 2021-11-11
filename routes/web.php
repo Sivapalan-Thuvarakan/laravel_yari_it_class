@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 /*
@@ -181,4 +182,5 @@ use Illuminate\Http\Request;
 // Route::get('/myInfo',[PageController::class,'myInfo'])->name('My-Info');
 
 
-Route::resource('student', StudentController::class);
+Route::resource('students', StudentController::class);
+Route::resource('employees', EmployeeController::class);

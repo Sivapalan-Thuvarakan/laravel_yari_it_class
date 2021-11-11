@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
-use Illuminate\Model;
-use App\Models\Student;
 
-class StudentController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students=Student::all();
-        return view('student.index',compact('students'));
-
+        $employees=Employee::get();
+        return view('Employee.index',compact('employees'));
     }
 
     /**
@@ -27,8 +25,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student.create');
-
+        return view('Employee.create');
     }
 
     /**
@@ -41,11 +38,16 @@ class StudentController extends Controller
     {
         $fname=$request->input('fname');
         $lname=$request->input('lname');
-
-        $student=new Student();
-        $student->first_name=$fname;
-        $student->last_name=$lname;
-        $student->save();   }
+        $dob=$request->input('dob');
+        $salary=$request->input('salary');
+        $employee=new Employee();
+        $employee->first_name=$fname;
+        $employee->last_name=$lname;
+        $employee->dob=$dob;
+        $employee->salary=$salary;
+        $employee->save();
+        return redirect()->route('employees.index');
+    }
 
     /**
      * Display the specified resource.
