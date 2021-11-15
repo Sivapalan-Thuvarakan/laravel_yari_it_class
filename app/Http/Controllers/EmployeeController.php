@@ -36,9 +36,19 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+
         $fname=$request->input('fname');
         $lname=$request->input('lname');
         $dob=$request->input('dob');
+
+
+        //---------------------Age Validation------------------------------
+        $currentDate = date("Y-m-d");
+
+        $age = date_diff(date_create($dob), date_create($currentDate));
+
+        return $age->format("%y");
+        // ----------------------------------------------------------------
         $salary=$request->input('salary');
         $employee=new Employee();
         $employee->first_name=$fname;
@@ -108,6 +118,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee=Employee::find($id);
+        $employee->delete();
+        return redirect()->route('employees.index');
     }
 }

@@ -18,6 +18,14 @@
             <td>{{$employee->salary}}</td>
             <td><a href="{{route('employees.show',$employee->id)}}">Show</a></td>
             <td><a href="{{route('employees.edit',$employee->id)}}">Edit</a></td>
+            {{-- <td><a href="{{route('employees.destroy',$employee->id)}}">Delete</a></td> --}}
+            <td>
+                <form action="{{route('employees.destroy',$employee->id)}}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>
