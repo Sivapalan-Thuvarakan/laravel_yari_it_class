@@ -1,4 +1,5 @@
 <h1>Our Employees</h1>
+<a href="{{route('employees.create')}}">Add New</a>
 <table border="1">
     <thead>
         <tr>

@@ -1,4 +1,4 @@
-<h1> Edit Student</h1>
+<h1> Edit Employee</h1>
 <form action="{{route('employees.update',$employee->id)}}" method="POST">
     @csrf
     @method('put')

@@ -1,6 +1,7 @@
 
 <body>
 <h1> Our Student List</h1>
+<a href="{{route('students.create')}}">Add New</a>
 @foreach ($students as $student )
     {{$student->id}}
     {{$student->first_name}}
