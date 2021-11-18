@@ -3,6 +3,10 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentNewController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -184,3 +188,7 @@ use Illuminate\Http\Request;
 
 Route::resource('students', StudentController::class);
 Route::resource('employees', EmployeeController::class);
+Route::resource('students-new', StudentNewController::class);
+Route::resource('subjects', SubjectController::class);
+Route::resource('grades', GradeController::class);
+Route::resource('phones', PhoneController::class);
