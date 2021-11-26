@@ -78,11 +78,13 @@ class StudentNewController extends Controller
         $student->last_name=$lname;
         $student->gender=$gender;
         $student->grade=$grade;
+        // $student->grade_id=1;
         $student->address=$address;
         $student->subject=implode(',',$request->subject);
         $student->date_of_birth=$dob;
         $student->email=$email;
         $student->mobile_no=$tel;
+        // $student->phone_id=1;
         $student->photo=$originalFile;
         $student->save();
         return redirect()->route('students-new.index');
@@ -126,8 +128,10 @@ class StudentNewController extends Controller
         $student->last_name=$request->lname;
         $student->gender=$request->gender;
         $student->grade=$request->grade;
+        // $student->grade_id=1;
+        // $student->phone_id=1;
         $student->address=$request->address;
-        $student->subject=$request->subject;
+        $student->subject=implode(',',$request->subject);
 
 
            //---------------------Age Validation------------------------------

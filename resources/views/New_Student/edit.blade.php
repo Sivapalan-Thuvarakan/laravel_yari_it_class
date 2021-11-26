@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-check form-check-inline">
                 <input class="form-check-input"type="checkbox" name="subject[]" value="science"
-                <?php if(in_Array('science',$sub)){ echo "checked";}?>id="science">
+                <?php if(in_Array('science',$sub)){ echo "checked";}?> id="science">
                 <label class="form-check-label" for="science">Science</label>
                 </div>
                 <div class="form-check form-check-inline">
