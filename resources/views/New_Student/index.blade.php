@@ -48,7 +48,7 @@
                         <td>{{ $student->first_name }}</td>
                         <td>{{ $student->last_name }}</td>
                         <td>{{ $student->gender }}</td>
-                        <td>{{ $student->grade }}</td>
+                        <td>{{ $student->grade->name }}</td>
                         <td>{{ $student->address }}</td>
                         <td>{{ $student->subject }}</td>
                         <td>{{ $student->date_of_birth }}</td>

@@ -10,6 +10,10 @@ class Student extends Model
 {
     use HasFactory;
 
+    public function grade(){
+        return $this->belongsTo(Grade::class);
+    }
+
     public function phone(){
         return $this->belongsTo(Phone::class);
     }

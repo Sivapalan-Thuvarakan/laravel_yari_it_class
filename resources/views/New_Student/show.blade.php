@@ -25,30 +25,30 @@
                 </div>
                 <div class="row">
                     <div class="col-4">
-                        <b>Gender : </b><p class="card-text">{{$student -> gender}}</p>
+                        <b>Gender : </b><p class="card-text">{{$student ->gender}}</p>
                     </div>
                     <div class="col-4">
-                        <b>Grade : </b><p class="card-text">{{$student -> grade}}</p>
+                        <b>Grade : </b><p class="card-text">{{$student ->grade->name}}</p>
                     </div>
                     <div class="col-4">
-                        <b>Address : </b><p class="card-text">{{$student -> address}}</p>
+                        <b>Address : </b><p class="card-text">{{$student ->address}}</p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-4">
-                        <b>Date of Birth : </b><p class="card-text">{{$student -> date_of_birth}}</p>
+                        <b>Date of Birth : </b><p class="card-text">{{$student ->date_of_birth}}</p>
                     </div>
                     <div class="col-4">
-                        <b>Email : </b><p class="card-text">{{$student -> email}}</p>
+                        <b>Email : </b><p class="card-text">{{$student ->email}}</p>
                     </div>
                     <div class="col-4">
-                        <b>Tel No : </b><p class="card-text">{{$student -> mobile_no}}</p>
+                        <b>Tel No : </b><p class="card-text">{{$student ->mobile_no}}</p>
                     </div>
                 </div>
 
                     <div>
-                        <?php $subjects=explode(',',$student -> subject);?>
+                        <?php $subjects=explode(',',$student ->subject);?>
 
                         <div class="d-flex m-1">
                             <b>Subjects : </b>

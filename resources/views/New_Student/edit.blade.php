@@ -40,14 +40,10 @@
         <div class="form-group col-md-6">
             <p>Select  Grade :</p>
             <select id="grade" name="grade" class="custom-select">
-                <option value="Six" <?php if($student->grade == "Six") echo "selected" ?>>Grade 6</option>
-                <option value="Seven" <?php if($student->grade == "Seven") echo "selected" ?>>Grade 7</option>
-                <option value="Eight" <?php if($student->grade == "Eight") echo "selected" ?>>Grade 8</option>
-                <option value="Nine" <?php if($student->grade == "Nine") echo "selected" ?>>Grade 9</option>
-                <option value="Ten" <?php if($student->grade == "Ten") echo "selected" ?>>Grade 10</option>
-                <option value="O level" <?php if($student->grade == "O level") echo "selected" ?>>O Level</option>
-                <option value="A level"<?php if($student->grade == "A level") echo "selected" ?>>A Level</option>
-            </select>
+            @foreach ($grades as $grade)
+                        <option value={{$grade->id}} @if($student->grade_id == $grade->id) selected @endif >{{$grade->name}}</option>
+            @endforeach
+        </select>
         </div>
     </div>
 

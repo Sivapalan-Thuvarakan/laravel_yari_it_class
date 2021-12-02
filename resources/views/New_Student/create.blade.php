@@ -39,13 +39,9 @@
         <div class="form-group col-md-6">
             <p>Select  Grade :</p>
             <select id="grade" name="grade" class="custom-select">
-                <option value="Six">Grade 6</option>
-                <option value="Seven">Grade 7</option>
-                <option value="Eight">Grade 8</option>
-                <option value="Nine">Grade 9</option>
-                <option value="Ten">Grade 10</option>
-                <option value="O level">O Level</option>
-                <option value="A level">A Level</option>
+                @foreach ($grades as $grade)
+                <option value={{$grade->id}}>{{$grade->name}}</option>
+                @endforeach
             </select>
         </div>
     </div>

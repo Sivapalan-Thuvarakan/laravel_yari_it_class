@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
 use Illuminate\Http\Request;
 use App\Models\Student;
 
@@ -15,7 +16,8 @@ class StudentNewController extends Controller
     public function index()
     {
 
-        $students=Student::all();
+        // $students=Student::all();
+        $students=Student::with('grade')->get();
         return view('New_Student.index',compact('students'));
     }
 
@@ -26,7 +28,8 @@ class StudentNewController extends Controller
      */
     public function create()
     {
-        return view('New_Student.create');
+        $grades=Grade::all();
+        return view('New_Student.create',compact('grades'));
 
     }
 
@@ -77,7 +80,7 @@ class StudentNewController extends Controller
         $student->first_name=$fname;
         $student->last_name=$lname;
         $student->gender=$gender;
-        $student->grade=$grade;
+        $student->grade_id=$grade;
         // $student->grade_id=1;
         $student->address=$address;
         $student->subject=implode(',',$request->subject);
@@ -111,7 +114,8 @@ class StudentNewController extends Controller
     public function edit($id)
     {
         $student=Student::find($id);
-        return view('New_Student.edit',compact('student'));
+        $grades=Grade::all();
+        return view('New_Student.edit',compact('student','grades'));
     }
 
     /**
@@ -127,7 +131,7 @@ class StudentNewController extends Controller
         $student->first_name=$request->fname;
         $student->last_name=$request->lname;
         $student->gender=$request->gender;
-        $student->grade=$request->grade;
+        $student->grade_id=$request->grade;
         // $student->grade_id=1;
         // $student->phone_id=1;
         $student->address=$request->address;
