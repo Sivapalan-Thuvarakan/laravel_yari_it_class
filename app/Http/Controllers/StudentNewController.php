@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use App\Models\Student;
+use App\Models\StudentSubject;
+use App\Models\Subject;
+use Session;
 
 class StudentNewController extends Controller
 {
@@ -41,6 +45,20 @@ class StudentNewController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = $request->validate([
+
+            'fname' => 'required|max:255',
+            'lname' => 'required',
+            'gender' => 'required',
+            'grade' => 'required',
+            'address' => 'required',
+            'date_of_birth' => 'required',
+            'email' => 'required|unique:students',
+            'tel' => 'required',
+            'image' => 'nullable',
+        ]);
+
         $fname=$request->input('fname');
         $lname=$request->input('lname');
         $gender=$request->input('gender');
@@ -70,10 +88,14 @@ class StudentNewController extends Controller
 
         //------------------------image storing process----------------------
         // return $request->file('image');
+        if($request->file('image')){
         $file = $request->file('image');
         $destinationPath = 'image/';
         $originalFile = $file->getClientOriginalName();
         $file->move($destinationPath, $originalFile);
+        }else{
+            $originalFile=null;
+        }
 
         //----------------------------------------------------------------------
         $student=new Student();
@@ -83,12 +105,15 @@ class StudentNewController extends Controller
         $student->grade_id=$grade;
         // $student->grade_id=1;
         $student->address=$address;
-        $student->subject=implode(',',$request->subject);
+        // if($request->subject){
+        //     $student->subject=implode(',',$request->subject);
+        // }
         $student->date_of_birth=$dob;
         $student->email=$email;
         $student->mobile_no=$tel;
-        // $student->phone_id=1;
         $student->photo=$originalFile;
+        // $student->phone_id=1;
+
         $student->save();
         return redirect()->route('students-new.index');
     }
@@ -135,7 +160,10 @@ class StudentNewController extends Controller
         // $student->grade_id=1;
         // $student->phone_id=1;
         $student->address=$request->address;
-        $student->subject=implode(',',$request->subject);
+        // if($request->subject){
+        //     $student->subject=implode(',',$request->subject);
+        // }
+
 
 
            //---------------------Age Validation------------------------------
@@ -163,11 +191,14 @@ class StudentNewController extends Controller
 
         //------------------------image storing process----------------------
         // return $request->file('image');
-        $file = $request->file('image');
-        $destinationPath = 'image/';
-        $originalFile = $file->getClientOriginalName();
-        $file->move($destinationPath, $originalFile);
-
+            if($request->file('image')){
+            $file = $request->file('image');
+            $destinationPath = 'image/';
+            $originalFile = $file->getClientOriginalName();
+            $file->move($destinationPath, $originalFile);
+            }else{
+                $originalFile=null;
+            }
         //---------------------------------------------------------------------
         $student->photo=$originalFile;
         $student->save();
@@ -193,6 +224,76 @@ class StudentNewController extends Controller
         $student=Student::find($id);
         $student->delete();
 
+        return redirect()->route('students-new.index');
+    }
+
+
+    //student subject
+    public function addsubjects($id)
+    {
+        $student_id=$id;
+        $subjects=Subject::all();
+        $existingSubject = StudentSubject::where('student_id',$student_id)->pluck('subject_id')->toArray();
+        return view('New_Student.student-subject.index',compact('subjects','student_id','existingSubject'));
+    }
+
+    public function addstudentsubjects(Request $request)
+    {
+        // dd($request);
+        $student_id=$request->student_id;
+        if($request->subject)
+        {
+            $subjects=$request->subject;
+        }
+        else
+        {
+        $subjects=[];
+        }
+        $total_subject=count($subjects);
+
+        $count=0;
+        $existingSubject = StudentSubject::where('student_id',$student_id)->pluck('subject_id')->toArray();
+        $new_inserts=array_diff($subjects,$existingSubject);
+        $old_diff = array_diff($existingSubject,$subjects);
+        // dd($old_diff,$new_inserts);
+        // if($total_subject>0)
+        // {
+            if(!empty($old_diff) && !empty($new_inserts))
+            {
+                foreach($old_diff as $sub)
+                {
+                    $studentSubject=StudentSubject::where('subject_id',$sub)->where('student_id',$student_id)->delete();
+                }
+                foreach($new_inserts as $n_sub)
+                {
+                    $studentSubject=new  StudentSubject();
+                    $studentSubject->student_id=$student_id;
+                    $studentSubject->subject_id=$n_sub;
+                    $studentSubject->save();
+                }
+                return redirect()->route('students-new.index');
+            }
+            if(!empty($old_diff) && empty($new_inserts))
+            {
+                foreach($old_diff as $sub)
+                {
+                    $studentSubject=StudentSubject::where('subject_id',$sub)->where('student_id',$student_id)->delete();
+                }
+                return redirect()->route('students-new.index');
+            }
+            if(empty($old_diff) && !empty($new_inserts))
+            {
+                foreach($new_inserts as $n_sub)
+                {
+                    $studentSubject=new  StudentSubject();
+                    $studentSubject->student_id=$student_id;
+                    $studentSubject->subject_id=$n_sub;
+                    $studentSubject->save();
+                }
+                return redirect()->route('students-new.index');
+            }
+
+        // }
         return redirect()->route('students-new.index');
     }
 }

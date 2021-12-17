@@ -14,6 +14,7 @@ class CreateStudentSubjectsTable extends Migration
     public function up()
     {
         Schema::create('student_subject', function (Blueprint $table) {
+            $table->id();
             $table->integer('student_id');
             $table->integer('subject_id');
             $table->timestamps();

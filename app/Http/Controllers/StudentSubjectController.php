@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Models\Student;
+use App\Models\StudentSubject;
 use App\Models\Subject;
 
-class SubjectController extends Controller
+class StudentSubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,20 +16,20 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects=Subject::all();
-        return view('Subjects.index',compact('subjects'));
+        //
     }
-
-
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('Subjects.create');
+
+        $student=Student::find($request->student);
+        $subjects=Subject::all();
+        return view('New_Student.student-subject.create',compact('student','subjects'));
     }
 
     /**
@@ -39,12 +40,7 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $subject_name=$request->name;
-        $subject=new Subject();
-        $subject->name=$subject_name;
-        $subject->save();
-
-        return redirect()->route('subjects.index');
+        //
     }
 
     /**
@@ -55,8 +51,7 @@ class SubjectController extends Controller
      */
     public function show($id)
     {
-        $subject=Subject::find($id);
-        return view('Subjects.show',compact('subject'));
+        //
     }
 
     /**
@@ -67,8 +62,7 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        $subject=Subject::find($id);
-        return view('Subjects.edit',compact('subject'));
+        //
     }
 
     /**
@@ -80,11 +74,7 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subject=Subject::find($id);
-        $subject->name=$request->name;
-        $subject->save();
-
-        return redirect()->route('subjects.index');
+        //
     }
 
     /**
@@ -95,8 +85,6 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        $subject=Subject::find($id);
-        $subject->delete();
-        return redirect()->route('subjects.index');
+        //
     }
 }

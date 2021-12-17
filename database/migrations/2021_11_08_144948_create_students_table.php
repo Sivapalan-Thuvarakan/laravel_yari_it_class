@@ -21,11 +21,10 @@ class CreateStudentsTable extends Migration
             $table->integer('grade_id')->nullable();
             $table->integer('phone_id')->nullable();
             $table->string('address',250);
-            $table->string('subject',100);
             $table->date('date_of_birth');
             $table->string('email',100);
             $table->string('mobile_no',20);
-            $table->text('photo');
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }

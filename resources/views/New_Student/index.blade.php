@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <h1 style="color:red;text-align:center;margin:50px;"> Student <small class="text-muted">Management System</small></h1>
         <div class="row">
@@ -57,6 +58,14 @@
                         <td>image</td>
                         <td>
                             <div class="d-flex">
+                                <a class="btn btn-sm btn-dark" style="margin: 5px"
+                                href="{{ route('select_book',$student->id) }}"><i class="fa fa-book"></i>
+                                </a>
+
+                                {{-- <a class="btn btn-sm btn-dark" style="margin: 5px"
+                                href="{{ route('students.subjects.create',$student->id) }}"><i class="fa fa-book"></i>
+                                </a> --}}
+
                                 <a class="btn btn-sm btn-success" style="margin: 5px"
                                     href="{{ route('students-new.show', $student->id) }}"><i class="fa fa-eye"></i>
                                 </a>

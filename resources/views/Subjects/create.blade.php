@@ -18,6 +18,18 @@
             <label for="fname">Subject Name</label>
             <input type="text" name="name" id="fname" class="form-control"  placeholder="Subject Name">
         </div>
+        <div class="col-md-6">
+            <label for="color">color</label>
+            <input type="text" name="color" id="color" class="form-control"  placeholder="Subject Name">
+        </div>
+        <div class="col-md-6">
+            <label for="sub_index">Subject Name</label>
+            <input type="text" name="sub_index" id="sub_index" class="form-control"  placeholder="Subject Name">
+        </div>
+        <div class="col-md-6">
+            <label for="order">Subject Name</label>
+            <input type="text" name="order" id="order" class="form-control"  placeholder="Subject Name">
+        </div>
     </div>
 
     <div class="d-flex" style="float: right;">
