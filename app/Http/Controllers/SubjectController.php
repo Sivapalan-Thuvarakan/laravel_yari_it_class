@@ -39,11 +39,24 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $arr =  [];
+
+        array_push($arr,'sub_index', $request->sub_index);
+        array_push($arr,'color', $request->color);
+        array_push($arr,'order', $request->order);
+        $json_sub=json_encode($arr);
+
         $subject_name=$request->name;
         $subject=new Subject();
         $subject->name=$subject_name;
+        $subject->extra=$json_sub;
         $subject->save();
 
+       
+
+        // // return json_encode($arr);
+        
         return redirect()->route('subjects.index');
     }
 
@@ -56,7 +69,9 @@ class SubjectController extends Controller
     public function show($id)
     {
         $subject=Subject::find($id);
-        return view('Subjects.show',compact('subject'));
+        $subject_extra=json_decode($subject->extra);
+        // return $subject_extra;
+        return view('Subjects.show',compact('subject','subject_extra'));
     }
 
     /**

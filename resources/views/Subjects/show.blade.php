@@ -22,6 +22,7 @@
             <div class="card-body">
                 <div class="row">
                      <h5 class="card-title my-3" style="margin: auto;">{{$subject ->name}} </h5>
+                     {{ $subject}}
                 </div>
 
 

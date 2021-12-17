@@ -16,11 +16,17 @@
     <div class="form-row">
         <div class="col-md-6">
             <label for="fname">First Name</label>
-            <input type="text" name="fname" id="fname" class="form-control"  placeholder="First Name">
+            <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror"  placeholder="First Name">
+            @error('fname')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
         <div class="form-group col-md-6">
             <label for="lname">Last Name</label>
-            <input type="text" name="lname" id="lname" class="form-control"  placeholder="Last Name">
+            <input type="text" name="lname" id="lname" class="form-control @error('lname') is-invalid @enderror"  placeholder="Last Name">
+            @error('lname')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -28,21 +34,28 @@
         <div class="form-group col-md-6">
             <p>Gender :</p>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="male" name="gender" value="male" class="custom-control-input">
+                <input type="radio" id="male" name="gender" value="male" class="custom-control-input" checked>
                 <label class="custom-control-label" for="male">Male</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-            <input class="custom-control-input" type="radio" id="female" name="gender" value="female" class="form-check">
+            <input class="custom-control-input" type="radio" id="female" name="gender" value="female" class="form-check @error('gender') is-invalid @enderror">
             <label class="custom-control-label" for="female">Female</label>
             </div>
+            @error('gender')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
         <div class="form-group col-md-6">
             <p>Select  Grade :</p>
-            <select id="grade" name="grade" class="custom-select">
+            <select id="grade" name="grade" class="custom-select @error('grade') is-invalid @enderror">
+                <option value=" ">selected</option>
                 @foreach ($grades as $grade)
                 <option value={{$grade->id}}>{{$grade->name}}</option>
                 @endforeach
             </select>
+            @error('grade')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 
@@ -51,45 +64,35 @@
         <div class="form-group col-md-6">
 
             <label for="address" >Address :</label><br>
-            <textarea   class="form-control" name="address" id="address" placeholder="Enter Address"></textarea><br>
-        </div>
-        <div class="form-group col-md-6">
-                <p>Subject :</p>
-                <div class="form-check form-check-inline">
-                <input  class="form-check-input" type="checkbox" name="subject[]" value="tamil" id="tamil">
-                <label class="form-check-label" for="tamil">Tamil</label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input"type="checkbox" name="subject[]" value="science" id="science">
-                <label class="form-check-label" for="science">Science</label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="subject[]" value="maths" id="maths">
-                <label class="form-check-label" for="maths">Maths</label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="subject[]" value="english" id="english">
-                <label class="form-check-label" for="english">English</label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="subject[]" value="history" id="history">
-                <label class="form-check-label" for="history">History</label><br><br>
-                </div>
+            <textarea   class="form-control @error('address') is-invalid @enderror" name="address" id="address" placeholder="Enter Address"></textarea>
+            @error('address')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
+            <br>
         </div>
     </div>
 
     <div class="form-row">
         <div class="form-group col-md-4">
             <label for="dob">Date Of Birth :</label>
-            <input class="form-control" type="date" id="dob" name="date_of_birth">
+            <input class="form-control @error('dob') is-invalid @enderror" type="date" id="dob" name="date_of_birth" value="{{ date('Y-m-d') }}">
+            @error('dob')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror 
         </div>
         <div class="form-group col-md-4">
             <label for="email">Email :</label>
-            <input class="form-control" type="email" id="email" name="email" placeholder="Enter Email">
+            <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" placeholder="Enter Email">
+            @error('email')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
         <div class="form-group col-md-4">
             <label for="tel">Mobile No :</label>
-            <input class="form-control" type="text" id="tel" name="tel" placeholder="Enter Tel No">
+            <input class="form-control @error('tel') is-invalid @enderror" type="text" id="tel" name="tel" placeholder="Enter Tel No">
+            @error('tel')
+            <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
     </div>
 

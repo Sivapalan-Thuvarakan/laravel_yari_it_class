@@ -45,7 +45,7 @@ class StudentNewController extends Controller
      */
     public function store(Request $request)
     {
-
+        // dd($request);
         $validated = $request->validate([
 
             'fname' => 'required|max:255',
@@ -58,6 +58,9 @@ class StudentNewController extends Controller
             'tel' => 'required',
             'image' => 'nullable',
         ]);
+        
+     
+
 
         $fname=$request->input('fname');
         $lname=$request->input('lname');
