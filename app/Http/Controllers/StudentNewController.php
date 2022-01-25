@@ -45,6 +45,8 @@ class StudentNewController extends Controller
      */
     public function store(Request $request)
     {
+
+
         // dd($request);
         $validated = $request->validate([
 
@@ -58,8 +60,8 @@ class StudentNewController extends Controller
             'tel' => 'required',
             'image' => 'nullable',
         ]);
-        
-     
+
+
 
 
         $fname=$request->input('fname');
@@ -118,7 +120,8 @@ class StudentNewController extends Controller
         // $student->phone_id=1;
 
         $student->save();
-        return redirect()->route('students-new.index');
+        return response()->json(['success'=>'Added success fully',"mydata"=>$student]);
+        // return redirect()->route('students-new.index');
     }
 
     /**

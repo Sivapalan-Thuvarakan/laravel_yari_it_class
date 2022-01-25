@@ -20,11 +20,13 @@
             <hr>
 
             <div class="card-body">
-                <div class="row">
-                     <h5 class="card-title my-3" style="margin: auto;">{{$subject ->name}} </h5>
-                     {{ $subject}}
-                </div>
+                <h5 class="card-title my-3" style="margin: auto;">{{$subject ->name}} </h5>
 
+
+                     <b>sub index:</b>{{$subject_extra -> sub_index}}<br>
+                     <b>color:</b>{{$subject_extra -> color}}<br>
+                     <b>order:</b>{{$subject_extra -> order}}<br>
+          
 
                     <div class="d-flex" style="float: right;">
                         <a class="btn btn-md btn-success"

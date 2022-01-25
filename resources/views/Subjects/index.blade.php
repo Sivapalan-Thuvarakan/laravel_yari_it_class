@@ -13,6 +13,10 @@
 </head>
 
 <body>
+
+    @if (Session::has('message'))
+        <p style="color:{{Session::get('color')}};">{{Session::get('message')}}</p>
+    @endif
     <div class="container">
         <h1 style="color:red;text-align:center;margin:50px;"> Student <small class="text-muted">Management System</small></h1>
 
